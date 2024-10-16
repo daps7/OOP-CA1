@@ -27,7 +27,7 @@ public class MainApp {
 //                maleSurvivors(passengerList);
 //        ticketOwner();
 //        averageAge(passengerList);
-//        getPassengersByTicketClass();
+            getPassengersByTicketClass(passengerList);
 //        sortPassengersByPassengerId()
 //        sortPassengersByName();
 //        sortPassengersByAgeThenName();
@@ -173,5 +173,30 @@ public static void averageAge(ArrayList<Passenger> passengerList)
    averageage = totalage / passengerList.size();
        System.out.println(averageage+" is the average age on the titanic.");
    }
+    public static void getPassengersByTicketClass(ArrayList<Passenger> passengersList) {
+        Scanner kb = new Scanner(System.in);
+        System.out.println("What class of passenger are you looking for? (FIRST, SECOND, THIRD)");
+
+        try {
+            // Convert user input to uppercase and match with enum
+            PassengerClass passengerClass = PassengerClass.valueOf(kb.next().toUpperCase());
+
+            for (Passenger passenger : passengersList) {
+                if (passenger.getPassengerClass() == passengerClass) {
+                    System.out.println(passenger);
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            // Handle invalid class input
+            System.out.println("Invalid passenger class. Please enter FIRST, SECOND, or THIRD.");
+        }
+    }
 
 }
+
+
+
+
+
+
+

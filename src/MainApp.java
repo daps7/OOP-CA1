@@ -3,8 +3,7 @@ import org.w3c.dom.ls.LSOutput;
 
 import java.io. * ;
 import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class MainApp {
     public static void main(String[] args) {
@@ -27,12 +26,12 @@ public class MainApp {
 //                maleSurvivors(passengerList);
 //        ticketOwner();
 //        averageAge(passengerList);
-            getPassengersByTicketClass(passengerList);
-//        sortPassengersByPassengerId()
-//        sortPassengersByName();
-//        sortPassengersByAgeThenName();
-//        sortPassengersByGenderThenPassengerNumber()
-//        sortPassengersByFareThenSurvival();
+//            getPassengersByTicketClass(passengerList);
+//            sortPassengersByPassengerId(passengerList);
+//            sortPassengersByName(passengerList);
+//            sortPassengersByAgeThenName(passengerList);
+//        sortPassengersByGenderThenPassengerNumber(passengerList);
+            sortPassengersByFareThenSurvival(passengerList);
 //        sortPassengersByTicketClass()
 //        sortPassengersByAge();
 //        sortPassengersByTicketNumberLambda();
@@ -64,7 +63,7 @@ public class MainApp {
                 sc.nextLine();   // read the header line containing column titles, but don't use it
 
             // while there is a next token to read....
-            System.out.println("Go...");
+//            System.out.println("Go...");
 
             while (sc.hasNext())
             {
@@ -81,7 +80,7 @@ public class MainApp {
                 String cabin = sc.next();
                 String embarkedAt = sc.next();
 
-                System.out.println(passengerId +", " + name);
+//                System.out.println(passengerId +", " + name);
 
                 passengerList.add(
                         new Passenger( passengerId, survived, passengerClass,
@@ -162,36 +161,85 @@ public class MainApp {
 //    System.out.println(totalFare);
 //}
 
-public static void averageAge(ArrayList<Passenger> passengerList)
-   {
-   int totalage = 0;
-   int averageage = 0;
-   for(Passenger passenger : passengerList)
-   {
-       totalage += passenger.getAge();
-   }
-   averageage = totalage / passengerList.size();
-       System.out.println(averageage+" is the average age on the titanic.");
-   }
-    public static void getPassengersByTicketClass(ArrayList<Passenger> passengersList) {
-        Scanner kb = new Scanner(System.in);
-        System.out.println("What class of passenger are you looking for? (FIRST, SECOND, THIRD)");
+//public static void averageAge(ArrayList<Passenger> passengerList)
+//   {
+//   int totalage = 0;
+//   int averageage = 0;
+//   for(Passenger passenger : passengerList)
+//   {
+//       totalage += passenger.getAge();
+//   }
+//   averageage = totalage / passengerList.size();
+//       System.out.println(averageage+" is the average age on the titanic.");
+//   }
 
-        try {
-            // Convert user input to uppercase and match with enum
-            PassengerClass passengerClass = PassengerClass.valueOf(kb.next().toUpperCase());
-
-            for (Passenger passenger : passengersList) {
-                if (passenger.getPassengerClass() == passengerClass) {
-                    System.out.println(passenger);
-                }
-            }
-        } catch (IllegalArgumentException e) {
-            // Handle invalid class input
-            System.out.println("Invalid passenger class. Please enter FIRST, SECOND, or THIRD.");
-        }
+//    public static void getPassengersByTicketClass(ArrayList<Passenger> passengersList) {
+//        Scanner kb = new Scanner(System.in);
+//        System.out.println("What class of passenger are you looking for? (FIRST, SECOND, THIRD)");
+//        try {
+//            //converting user input to uppercase and match with enum
+//            PassengerClass passengerClass = PassengerClass.valueOf(kb.next().toUpperCase());
+//
+//            for (Passenger passenger : passengersList) {
+//                if (passenger.getPassengerClass() == passengerClass) {
+//                    System.out.println(passenger);
+//                }
+//            }
+//        } catch (IllegalArgumentException e) {
+//            // Handle invalid class input
+//            System.out.println("Invalid passenger class.Please enter FIRST, SECOND or THIRD");
+//        }
+//    }
+//    public static void sortPassengersByPassengerId(ArrayList<Passenger> passengerList)
+//    {
+//        System.out.println("Passengers sorted by passenger ID");
+//        passengerComparatorID IDComparator = new passengerComparatorID();
+//        Collections.sort(passengerList, IDComparator);
+//        display(passengerList);
+//    }
+//    public static void sortPassengersByName(ArrayList<Passenger> passengerList)
+//    {
+//        System.out.println("Passengers sorted by name");
+//        PassengerNameComparator NameComparator = new PassengerNameComparator();
+//        Collections.sort(passengerList, NameComparator);
+//        display(passengerList);
+//    }
+    public static void sortPassengersByAgeThenName(ArrayList<Passenger> passengerList)
+    {
+        System.out.println("Passengers sorted by age then name");
+        PassengerAgeThenNameComparator AgeComparator = new PassengerAgeThenNameComparator();
+        Collections.sort(passengerList, AgeComparator);
+        display(passengerList);
+    }
+    public static void sortPassengersByGenderThenPassengerNumber(ArrayList<Passenger> passengerList)
+    {
+        System.out.println("Passengers sorted by passenger number");
+        sortPassengersByGenderThenPassengerNumberComparator GenderComparator = new sortPassengersByGenderThenPassengerNumberComparator();
+        Collections.sort(passengerList, GenderComparator);
+        display(passengerList);
+    }
+    public static void sortPassengersByFareThenSurvival(ArrayList<Passenger> passengerList)
+    {
+        System.out.println("Passengers sorted by fare then survival");
+    sortPassengersByFareThenSurvivalComparator FareComparator = new sortPassengersByFareThenSurvivalComparator();
+    Collections.sort(passengerList, FareComparator);
+    display(passengerList);
     }
 
+
+
+
+
+
+
+
+
+
+
+    public static void display(List<Passenger> passengerList)
+    {
+        for (Passenger passenger : passengerList) { System.out.println(passenger); }
+    }
 }
 
 

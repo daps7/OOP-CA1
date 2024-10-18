@@ -31,11 +31,11 @@ public class MainApp {
 //            sortPassengersByName(passengerList);
 //            sortPassengersByAgeThenName(passengerList);
 //        sortPassengersByGenderThenPassengerNumber(passengerList);
-            sortPassengersByFareThenSurvival(passengerList);
-//        sortPassengersByTicketClass()
-//        sortPassengersByAge();
-//        sortPassengersByTicketNumberLambda();
-//        sortPassengersByTicketNumberStatic();
+//            sortPassengersByFareThenSurvival(passengerList);
+//        sortPassengersByTicketClass(passengerList);
+//        sortPassengersByAge(passengerList);
+//        sortPassengersByTicketNumberLambda(passengerList);
+//        sortPassengersByTicketNumberStatic(passengerList);
 //        findPassengerByTicketNumber();
 //        findPassengerByPassengerId();
 
@@ -175,9 +175,8 @@ public class MainApp {
 
 //    public static void getPassengersByTicketClass(ArrayList<Passenger> passengersList) {
 //        Scanner kb = new Scanner(System.in);
-//        System.out.println("What class of passenger are you looking for? (FIRST, SECOND, THIRD)");
+//        System.out.println("What class of passenger are you looking for? (FIRST, SECOND or THIRD)");
 //        try {
-//            //converting user input to uppercase and match with enum
 //            PassengerClass passengerClass = PassengerClass.valueOf(kb.next().toUpperCase());
 //
 //            for (Passenger passenger : passengersList) {
@@ -204,27 +203,56 @@ public class MainApp {
 //        Collections.sort(passengerList, NameComparator);
 //        display(passengerList);
 //    }
-    public static void sortPassengersByAgeThenName(ArrayList<Passenger> passengerList)
+//    public static void sortPassengersByAgeThenName(ArrayList<Passenger> passengerList)
+//    {
+//        System.out.println("Passengers sorted by age then name");
+//        PassengerAgeThenNameComparator AgeComparator = new PassengerAgeThenNameComparator();
+//        Collections.sort(passengerList, AgeComparator);
+//        display(passengerList);
+//    }
+//    public static void sortPassengersByGenderThenPassengerNumber(ArrayList<Passenger> passengerList)
+//    {
+//        System.out.println("Passengers sorted by passenger number");
+//        sortPassengersByGenderThenPassengerNumberComparator GenderComparator = new sortPassengersByGenderThenPassengerNumberComparator();
+//        Collections.sort(passengerList, GenderComparator);
+//        display(passengerList);
+//    }
+//    public static void sortPassengersByFareThenSurvival(ArrayList<Passenger> passengerList)
+//    {
+//        System.out.println("Passengers sorted by fare then survival");
+//    sortPassengersByFareThenSurvivalComparator FareComparator = new sortPassengersByFareThenSurvivalComparator();
+//    Collections.sort(passengerList, FareComparator);
+//    display(passengerList);
+//    }
+//    public static void sortPassengersByTicketClass(ArrayList<Passenger> passengerList)
+//    {
+//        System.out.println("Passengers sorted by Ticket Class");
+//        sortPassengersByTicketClassComparator TicketClassComparator = new sortPassengersByTicketClassComparator();
+//        Collections.sort(passengerList, TicketClassComparator);
+//        display(passengerList);
+//    }
+//
+//    public static void sortPassengersByAge(ArrayList<Passenger> passengerList)
+//    {
+//        System.out.println("Passengers sorted by age");
+//        sortPassengersByAgeComparator AgeComparator = new sortPassengersByAgeComparator();
+//        Collections.sort(passengerList, AgeComparator);
+//        display(passengerList);
+//    }
+    public static void sortPassengersByTicketNumberLambda(ArrayList<Passenger> passengerList)
     {
-        System.out.println("Passengers sorted by age then name");
-        PassengerAgeThenNameComparator AgeComparator = new PassengerAgeThenNameComparator();
-        Collections.sort(passengerList, AgeComparator);
+        System.out.println("Passengers sorted by Ticket Number using Lambda");
+        Collections.sort(passengerList, (p1, p2) -> p1.getTicketNumber().compareTo(p2.getTicketNumber()));
         display(passengerList);
     }
-    public static void sortPassengersByGenderThenPassengerNumber(ArrayList<Passenger> passengerList)
+    public static void sortPassengersByTicketNumberStatic(ArrayList<Passenger> passengerList)
     {
-        System.out.println("Passengers sorted by passenger number");
-        sortPassengersByGenderThenPassengerNumberComparator GenderComparator = new sortPassengersByGenderThenPassengerNumberComparator();
-        Collections.sort(passengerList, GenderComparator);
+        System.out.println("Passengers sorted by Ticket Number using Static");
+        Collections.sort(passengerList, sortPassengersByTicketNumberStaticComparator.sortbyTicketNumber);
         display(passengerList);
     }
-    public static void sortPassengersByFareThenSurvival(ArrayList<Passenger> passengerList)
-    {
-        System.out.println("Passengers sorted by fare then survival");
-    sortPassengersByFareThenSurvivalComparator FareComparator = new sortPassengersByFareThenSurvivalComparator();
-    Collections.sort(passengerList, FareComparator);
-    display(passengerList);
-    }
+
+
 
 
 

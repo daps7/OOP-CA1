@@ -1,6 +1,7 @@
 
 import org.w3c.dom.ls.LSOutput;
 
+import javax.swing.*;
 import java.io. * ;
 import java.sql.SQLOutput;
 import java.util.*;
@@ -24,7 +25,7 @@ public class MainApp {
 //            countPassengersByGender(passengerList);
 //                sumFares(passengerList);
 //                maleSurvivors(passengerList);
-//        ticketOwner();
+//        ticketOwner(passengerList);
 //        averageAge(passengerList);
 //            getPassengersByTicketClass(passengerList);
 //            sortPassengersByPassengerId(passengerList);
@@ -36,8 +37,8 @@ public class MainApp {
 //        sortPassengersByAge(passengerList);
 //        sortPassengersByTicketNumberLambda(passengerList);
 //        sortPassengersByTicketNumberStatic(passengerList);
-//        findPassengerByTicketNumber();
-//        findPassengerByPassengerId();
+//        findPassengerByTicketNumber(passengerList, "A/5. 2151");
+        findPassengerByPassengerId(passengerList,"22");
 
 
     }
@@ -160,7 +161,34 @@ public class MainApp {
 //    }
 //    System.out.println(totalFare);
 //}
-
+    public static void maleSurvivors(ArrayList<Passenger> passengerList)
+    {
+     for (Passenger passenger : passengerList)
+     {
+         if(passenger.getGender().equalsIgnoreCase("Male"))
+         {
+             System.out.println(passenger);
+         }
+     }
+    }
+//        public static void ticketOwner(ArrayList<Passenger> passengerList)
+//        {
+//            Scanner kb = new Scanner(System.in);
+//                System.out.println("What ticket are you looking for?");
+//                String ticketNumber = kb.nextLine();
+//                for (Passenger passenger : passengerList)
+//                {
+//                    if (passenger.getTicketNumber().equals(ticketNumber))
+//                    {
+//                        System.out.println(passenger);
+//                    }
+//                    else
+//                    {
+//                        System.out.println("null");
+//                        break;
+//                    }
+//                }
+//        }
 //public static void averageAge(ArrayList<Passenger> passengerList)
 //   {
 //   int totalage = 0;
@@ -232,24 +260,49 @@ public class MainApp {
 //        display(passengerList);
 //    }
 //
-//    public static void sortPassengersByAge(ArrayList<Passenger> passengerList)
+//     public static void sortPassengersByAge(ArrayList<Passenger> passengerList) {
+//         //using an anonymous inner class to sort passengers by age
+//         Collections.sort(passengerList, new Comparator<Passenger>() {
+//             @Override
+//             public int compare(Passenger p1, Passenger p2) {
+//                 //compare passengers based on their age
+//                 return Integer.compare(p1.getAge(), p2.getAge());
+//             }
+//         });
+//         display(passengerList);
+//     }
+//    }
+//    public static void sortPassengersByTicketNumberLambda(ArrayList<Passenger> passengerList)
 //    {
-//        System.out.println("Passengers sorted by age");
-//        sortPassengersByAgeComparator AgeComparator = new sortPassengersByAgeComparator();
-//        Collections.sort(passengerList, AgeComparator);
+//        System.out.println("Passengers sorted by Ticket Number using Lambda");
+//        Collections.sort(passengerList, (p1, p2) -> p1.getTicketNumber().compareTo(p2.getTicketNumber()));
 //        display(passengerList);
 //    }
-    public static void sortPassengersByTicketNumberLambda(ArrayList<Passenger> passengerList)
+//    public static void sortPassengersByTicketNumberStatic(ArrayList<Passenger> passengerList)
+//    {
+//        System.out.println("Passengers sorted by Ticket Number using Static");
+//        Collections.sort(passengerList, sortPassengersByTicketNumberStaticComparator.sortbyTicketNumber);
+//        display(passengerList);
+//    }
+//    public static void findPassengerByTicketNumber(ArrayList<Passenger> passengerList, String ticketNumber)
+//    {
+//        Collections.sort(passengerList, new sortPassengerByTicketNumberComparator());
+//        int index = Collections.binarySearch(passengerList, new Passenger(ticketNumber,""), new sortPassengerByTicketNumberComparator());
+//        if (index >= 0) {
+//            System.out.println("Passenger found: " + passengerList.get(index));
+//        } else {
+//            System.out.println("Passenger not found.");
+//        }
+//    }
+    public static void findPassengerByPassengerId(ArrayList<Passenger> passengerList, String passengerId)
     {
-        System.out.println("Passengers sorted by Ticket Number using Lambda");
-        Collections.sort(passengerList, (p1, p2) -> p1.getTicketNumber().compareTo(p2.getTicketNumber()));
-        display(passengerList);
-    }
-    public static void sortPassengersByTicketNumberStatic(ArrayList<Passenger> passengerList)
-    {
-        System.out.println("Passengers sorted by Ticket Number using Static");
-        Collections.sort(passengerList, sortPassengersByTicketNumberStaticComparator.sortbyTicketNumber);
-        display(passengerList);
+        Collections.sort(passengerList, new sortingPassengerIDForBinary());
+        int index = Collections.binarySearch(passengerList, new Passenger("",passengerId), new sortingPassengerIDForBinary());
+        if (index >= 0) {
+            System.out.println("Passenger ID found: " + passengerList.get(index));
+        } else {
+            System.out.println("Passenger ID not found.");
+        }
     }
 
 

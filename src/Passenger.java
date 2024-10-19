@@ -39,6 +39,13 @@ public class Passenger {
         this.embarkedAt = embarkedAt;
     }
 
+    public Passenger(String ticketNumber , String passengerId)
+    {
+        this.passengerId = passengerId;
+        this.ticketNumber = ticketNumber;
+    }
+
+
 
     @Override
     public String toString() {
